@@ -1,8 +1,7 @@
 /* @import url('http://example.com/example_style.css'); */
 
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,300,500,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-
 /**
  * CSS @imports must be at the top of the file.      
  * Add them above this section.                             
@@ -11,7 +10,7 @@
 
 
 /* ==========================================================================
-   HS COS Boilerplate v1.4.0                                
+   SparkReaction Boilerplate v1.5.0                                
    ========================================================================== */
 
 /* This responsive framework is required for all styles. */
@@ -20,8 +19,6 @@
 
 /* These includes are optional, but helpful. */
 {% include "hubspot/styles/patches/recommended.css" %} 
-
-
 
 
 
@@ -105,13 +102,15 @@
 {% set accentColor3   = "#ddd" %}    /* {# Lightest Gray  |  Ex. "color: {{ accentColor3 }};" #} */
 
 /* Typography */
-{% set baseFontFamily    = "Raleway, sans-serif;" %}            /* {# Used on 'body' in 'Base'  |  Ex. "font-family: {{ baseFontFamily }};" #} */
+{% set baseFontFamily    = "Open Sans, Sans-Serif" %}            /* {# Used on 'body' in 'Base'  |  Ex. "font-family: {{ baseFontFamily }};" #} */
 {% set baseFontSize      = "13px" %}                         /* {# Used on 'body' in 'Base'  |  Ex. "font-size: {{ baseFontSize }};" #} */
 {% set baseLineHeight    = "1.5" %}                          /* {# Used on 'body' in 'Base'  |  Ex. "line-height: {{ baseLineHeight }};" #} */
 {% set webFont1          = "Helvetica, Arial, Sans-serif" %} /* {# Ex. "font-family: {{ webFont1 }};" #} */
 
 /* Containers */
 {% set maxWidth = "1080px" %} /* Used on '.page-center' in 'Base' and in the 'Portrait tablet to landscape and desktop' media query */
+
+
 
 
 /* ==========================================================================
@@ -248,6 +247,13 @@ body {
 
 a { color: {{ linkColor }}; }
 a:hover, a:focus { color: {{ linkHover }}; }
+
+hr {
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
+  border: none;
+}
 
 /* Highlighted Text */
 ::-moz-selection {
@@ -430,6 +436,9 @@ q:before, q:after, blockquote:before, blockquote:after {}
    ========================================================================== */
 
 
+
+
+
 /* ==========================================================================
    Custom Menu Primary
    ========================================================================== */
@@ -441,20 +450,19 @@ q:before, q:after, blockquote:before, blockquote:after {}
 {% set aColorHover   = "#008ed9" %} /* Set link Hover Color */
 {% set uldropColor   = "#fff" %} /*Set dropdown menu background color */
 
-
 /* Parent List */
 .custom-menu-primary .hs-menu-wrapper > ul{ 
-    background:{{ ulColor }};
-    float: right;
+  background:{{ ulColor }};
+  float: right;
 }
 .custom-menu-primary .hs-menu-wrapper > ul > li{
-    background:{{ liColor }};
+	background:{{ liColor }};
     float: left;
     list-style-type: none;
 }
 .custom-menu-primary .hs-menu-wrapper > ul > li > a{
-    color: #fff;
-    display: inline-block;
+  color:{{ aColor }};
+      display: inline-block;
     text-decoration: none;
     line-height: 1;
     margin: 0;
@@ -464,7 +472,7 @@ q:before, q:after, blockquote:before, blockquote:after {}
     padding: 20px 14px;
 }
 .custom-menu-primary .hs-menu-wrapper > ul > li > a:hover{
-    color:{{ aColorHover }};
+  color:{{ aColorHover }};
 }
 
 /* Child List */
@@ -478,260 +486,311 @@ q:before, q:after, blockquote:before, blockquote:after {}
     {{ borderRadius("0px") }};
     {{ boxshadow("none") }};
 }
-
 .custom-menu-primary .hs-menu-wrapper > ul ul li{
-    background: transparent;
+  background:{{ liColor }};
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.17);
 }
-
 .custom-menu-primary .hs-menu-wrapper > ul ul li a{
-    color:{{ aColor }};
-    padding: 15px;
+  color:{{ aColor }};
+      padding: 15px;
     line-height: 1;
     font-size: 15px;
     font-weight: 400;
     text-decoration: none;
 }
-
 .custom-menu-primary .hs-menu-wrapper > ul ul li a:hover{
-    color:{{ aColorHover }};
+  color:{{ aColorHover }};
 }
 
 /* Override max width on menu links */
 .custom-menu-primary .hs-menu-wrapper > ul li a, 
 .hs-menu-wrapper.hs-menu-flow-horizontal > ul li.hs-item-has-children ul.hs-menu-children-wrapper li a {
-    overflow: visible !important;
-    max-width: none !important;
-    width: auto !important;
+  overflow: visible !important;
+  max-width: none !important;
+  width: auto !important;
 }
 
 /* Fix menu disappearing on desktop after toggling mobile menu */
 @media screen and (min-width:768px) {
-.custom-menu-primary .hs-menu-wrapper { 
-    display:block !important;
-}
-}
-  
+      .custom-menu-primary .hs-menu-wrapper { 
+          display:block !important;
+      }
+  }
+
+
+
 
 /* ==========================================================================
-   Mobile Menu - Toggle Side Menu - Right
+   Mobile Menu - Hubspot Standard Toggle Menu
    ========================================================================== */
 
- 
-/* Variables
-   ========================================================================== */
 
-{% set mobileIconColor      = "#fff" %} /* Set mobile icon color */
-{% set closeIconColor       = "#fff" %} /* Set close icon color */
-{% set menuBg               = "#333" %} /* Set full menu background color */
-{% set mobileLinkColor      = "#fff" %} /* Set link Color */
-{% set mobileLinkColorHover = "#ccc" %} /* Set link Hover Color */
- 
+/**
+ * Special Note
+ *
+ * When the menu is open, a class of .mobile-open is applied to the body. You can 
+ * use this for custom styling on any element when the menu is in the open position.                     
+ */
 
-/* Toggle Button
-   ========================================================================== */ 
+.mobile-trigger, .child-trigger{
+    display: none; /* Hide button on Desktop */
+}
 
-.mobile-icon {
-    display: none;    /* Hide button on Desktop */
-    cursor: pointer;  /* Mouse pointer type on hover */
-    width: 40px;      /* Button width */
-    height: 40px;     /* Button height */  
-    margin: 10px; 
+@media (max-width: 767px){
+
+
+  /* Variables
+     ========================================================================== */
+
+  {% set menuColorMobile = "#000000" %}   /* Set Mobile Menu Background Color */
+  {% set aColorMobile = "#ffffff" %}      /* Set Link Color */
+  {% set aColorHoverMobile = "#ffffff" %} /* Set Link Hover Color */
+
+  /* 
+    * Menu Reset
+    *
+    * Remove styling from desktop version of custom-menu-primary. Place any 
+    * additional CSS you want removed from the mobile menu in this reset 
+    */
+
+  .custom-menu-primary,
+  .custom-menu-primary .hs-menu-wrapper > ul,
+  .custom-menu-primary .hs-menu-wrapper > ul li,
+  .custom-menu-primary .hs-menu-wrapper > ul li a{
+    display: block;
+    float: none;
+    position: static;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    padding: 0px;
+    margin: 0px;
+    background-image: none;
+    background-color: transparent;
+    border: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none; 
+    max-width: none;
+    width: 100%;
+    height: auto;
+    line-height: 1;  
+    font-weight: normal;
+    text-decoration: none;
+    text-indent: 0px;
+    text-align: left;
+    color:{{aColorMobile}};
+  }
+
+
+  /* Toggle Button
+     ========================================================================== */
+
+  .mobile-trigger{
+    display: inline-block !important; /* Show button on mobile */
+    cursor: pointer; /* Mouse pointer type on hover */
+    position: absolute; /*******************************************/
+    top: 0px;          /* Position Button at right of screen  */
+    right: 10px;        /*******************************************/
+    width: auto; /* Button width */
+    height: auto; /* Button height */      
+    padding: 7px 10px 8px 10px;
+    background: #ffffff; /* Background color */
+    border: 1px solid {{ menuColorMobile }};
+    font-size: 16px;
+    font-weight: normal;
+    text-align: left;
+    text-transform: uppercase;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: {{ menuColorMobile }}; 
+  }
+  .mobile-trigger:hover{
+    text-decoration: none; /* Removes link text underline on button */
+    color:{{ aColorHoverMobile }};
+    background-color: {{ menuColorMobile }}; 
+    border-color: transparent;
+  }
+
+  /* Change button when menu is open */
+  .mobile-open .mobile-trigger{
+    color:{{ aColorHoverMobile }};
+    background-color: {{ menuColorMobile }}; 
+    border-color: transparent;
+  }
+
+
+  /* Toggle Button Icon
+     ========================================================================== */
+
+  .mobile-trigger i{
+    display: inline;
+    position: relative;
+    top: -4px;
+  }
+  .mobile-trigger i:before, .mobile-trigger i:after{
+    position: absolute;
+    content: '';
+  }
+  .mobile-trigger i, .mobile-trigger i:before, .mobile-trigger i:after{
+    width: 22px; /* Icon line width */
+    height: 2px; /* Icon line height */
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    background-color: {{ menuColorMobile }}; /* Icon color */
+    display: inline-block;
+  }
+  .mobile-trigger i:before{
+    top: -6px; /* Position top line */
+  }
+  .mobile-trigger i:after{
+    top: 6px; /* Position bottom line */
+  }
+  
+  .mobile-trigger:hover i, .mobile-trigger:hover i:before, .mobile-trigger:hover i:after,  
+  .mobile-open .mobile-trigger i, .mobile-open .mobile-trigger i:before, .mobile-open .mobile-trigger i:after{
+      background-color: {{ aColorHoverMobile }}; /* Icon color */
+  }
+
+
+  /* Child Toggle Button
+     ========================================================================== */
+
+  .child-trigger{
+    display: block !important; /* Hide button on Desktop */
+    cursor: pointer; /* Mouse pointer type on hover */
     position: absolute;
     top: 0px;
     right: 0px;
-}
-.mobile-icon:hover {
-    text-decoration: none; /* Removes link text underline on button */
-}
- 
-/* Three line icon */
-.mobile-icon span {
-    margin: 0 auto;
+    width: 55px !important; /* Button width */
+    min-width: 55px !important;
+    height: 45px !important; /* Button height */  
+    padding: 0 !important;
+    border-left: 1px dotted rgba(255, 255, 255, .20);
+  }
+  .child-trigger:hover{
+    text-decoration: none;
+  }
+  .child-trigger i{
     position: relative;
-    top: 17px;
-}
-.mobile-icon  span:before, .mobile-icon span:after {
+    top: 50%; /* Centers icon inside button */
+    margin: 0 auto !important;
+  }
+  .child-trigger i:after{
     position: absolute;
     content: '';
-}
-.mobile-icon  span, .mobile-icon  span:before, .mobile-icon  span:after {
-    width: 25px; /* Icon line width */
-    height: 4px; /* Icon line height */
-    background-color: {{ mobileIconColor }}; /* Color of all three lines */
-    {{ borderRadius("2px") }};
+  }
+  .child-trigger i, .child-trigger i:after{
+    width: 10px; /* Icon line width */
+    height: 1px; /* Icon line height */
+    background-color:{{ aColorMobile }}; /* Icon color */
     display: block;
-}
-.mobile-icon  span:before {
-    margin-top: -8px; /* Position top line */
-}
-.mobile-icon  span:after {
-    margin-top: 8px; /* Position bottom line */
-}
- 
+  }
+  .child-trigger i:after{
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+  .child-trigger.child-open i:after{
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+  .child-trigger.child-open i{
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
 
-/* Close Button
-   ========================================================================== */  
-.close-icon {
-    display: none !important;
-    cursor: pointer;
-    margin: 27px 20px 10px;
-    float: left;
-    position: relative;
-    height: 25px;
-    width: 25px !important;
-}
-.close-icon:after,
-.close-icon:before {
-    content: "";
-    width: 25px !important;
-    height: 4px;
-    background: {{ closeIconColor }};
-    position: absolute;
-    {{ borderRadius("2px") }};
-    {{ transform("rotate(45deg)") }};
-}
-.close-icon:before {
-    {{ transform("rotate(-45deg)") }};
-}
-
-
-/* Menu Styles on Mobile Devices
-   ========================================================================== */  
- 
-@media (min-width: 1025px) {
-/* Will prevent the '100% Height' script for the Main Menu to affect desktop */
-.custom-menu-primary {
-    height: auto !important;
-}
-}
- 
-@media (max-width: 1024px) {
-body, html {
-    height: 100%;
-}
-
-/* Show the Mobile and Close Icons */
-.mobile-icon,
-.close-icon {
-    display: block !important;
-}
-
-/* Container added with js and is required for transforms to work */
-#site-wrapper{
-    max-width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* Provide room in header for the toggle button */ 
-.header-container-wrapper .page-center{
-    padding-right: 60px;
-}
-
-/* Provide spacing for the menu ul */
-.custom-menu-primary .hs-menu-flow-horizontal>ul {
-    clear: both;
-    padding-right: 15px;
-    padding-left: 15px;
-    width: 100%;
-}
-
-.custom-menu-primary .hs-menu-wrapper>ul ul {
-    background: none;
-    border-top: 0px !important;
-    border: none;
-}
     
-.custom-menu-primary .hs-menu-wrapper>ul ul li {
-    margin: 0 0 5px !important;
-    border-top: 0px !important;
-}
-
-.hs-menu-wrapper.hs-menu-flow-horizontal>ul li.hs-item-has-children {
-    position: relative;
-    margin: 0!important;
-    border-bottom: 1px solid #414141;
-    overflow: hidden;
-}
-    
-.hs-menu-children-wrapper {
-    display: none;
-    visibility: visible!important;
-    opacity: 1!important;
-    position: static!important;
-}
-    
-.hs-menu-depth-2>a {
-    display: inline-block!important;
-    padding: 0!important;
-    width: auto!important;
-    max-width: none;
-    margin: 0 50px 5px 43px;
-}
-    
-.hs-menu-depth-1.hs-item-has-children {
-    background: url(http://cdn2.hubspot.net/hub/883/file-1216206380-png/images/mobile-nav-dropdown.png) no-repeat 95% 22px;
-}
-    
-.hs-menu-depth-1.hs-item-has-children.drop {
-    background: url(http://cdn2.hubspot.net/hub/883/file-1216206395-png/images/mobile-nav-drop.png) no-repeat 95% 27px;
-}
-    
-.hs-menu-wrapper.hs-menu-flow-horizontal>ul li.hs-menu-depth-1 {
-    float: none;
-}
-    
-.hs-menu-depth-1>.hs-menu-children-wrapper {
-    margin: 0 0 17px!important;
-}
-
-/* Mobile Nav is HIDDEN By Default */
-.custom-menu-primary {
-    display: none;
-    position: absolute;
-    width: 70% !important; /* must match the value above in 'left' */
-    z-index: 1000;
-    background: {{ menuBg }}; 
-    right: 0;
-    top: 0;
-    {{ transform("translate3d(100%, 0, 0)") }};
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-/* Set Link Colors */
-.custom-menu-primary a { 
-    color: {{ mobileLinkColor }} !important;  
-}
-
-.custom-menu-primary a:hover { 
-    color: {{ mobileLinkColorHover }}; 
-}
-
-/* All Main Containers Display FULL Width By Default */
-.header-container-wrapper, .body-container-wrapper, .footer-container-wrapper {
-    {{ transform("transform 500ms ease") }};
-}
+  /* Menu Styles on Mobile Devices
+     ========================================================================== */  
      
-/* All Main Containers Display PARTIAL Width On Icon Click */
-.show-mobile-nav .header-container-wrapper, .show-mobile-nav .body-container-wrapper, .show-mobile-nav .footer-container-wrapper {
-    {{ transform("translate3d(-70%, 0, 0) scale3d(1, 1, 1)") }}; /* the x value must match the 'left' and 'width' values of '.custom-menu' */
-}
+   .custom-menu-primary.js-enabled{
+       position: relative;
+       padding-top: 44px; /* Makes room for button */
+       margin: 10px 0 10px 0;
+   }
+
+  /* Hide menu on mobile */
+  .custom-menu-primary.js-enabled .hs-menu-wrapper,
+  .custom-menu-primary.js-enabled .hs-menu-children-wrapper{
+    display: none;
+  }  
+
+  /* Make child lists appear below parent items */
+  .custom-menu-primary ul.hs-menu-children-wrapper{
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    display: none;
+  }
+
+  /* Mobile Menu Styles */ 
+  .custom-menu-primary.js-enabled .hs-menu-wrapper{
+    width: 100%;
+    position: relative; /**************************************************************/
+    top: 0;             /* Positions the menu to drop from the very top of the screen */
+    left: 0;          /**************************************************************/
+    padding: 0;
+  }
+  .custom-menu-primary .hs-menu-wrapper{
+    background-color:{{ menuColorMobile }}; /* Menu background color set off global menuColorMobile variable */
+    width: 100%; /* Full screen width */
+  }
+
+   /* Level 1 Menu List Styles */
+  .custom-menu-primary .hs-menu-wrapper > ul > li{
+    position: relative;
+  }
+  .custom-menu-primary .hs-menu-wrapper > ul > li a{
+    font-size: 22px; /* Font size of top level list items */
+    line-height: 45px;
+    overflow: visible;
+  }
+
+  /* Level 1 and Higher Menu List Styles */
+  .custom-menu-primary .hs-menu-wrapper > ul li{
+    border-top: 1px dotted rgba(255, 255, 255, .35); /* Adds transparent dark highlights to top of top level list items */
+  }
+  .custom-menu-primary .hs-menu-wrapper >  ul li a{
+    padding: 0 10px;
+    color:{{ aColorMobile }}; /* link color set by global mobile-aColor variable */
+  }
+  .custom-menu-primary .hs-menu-wrapper > ul li a:hover{
+    color:{{ aColorHoverMobile }}; /* link hover color set by global mobile-aColorHover variable */
+  }
+
+  /* Level 2 and Higher Menu List Styles */
+  .custom-menu-primary .hs-menu-wrapper > ul ul li{
+    background-color: rgba(255, 255, 255, .08);
+  }
+  .custom-menu-primary .hs-menu-wrapper > ul ul li a{
+    text-indent: 10px; /* Indent Child lists */
+    font-size: 16px; /* Font size of child lists */
+  }
+
+  /* Level 3 and Higher Menu List Styles */
+  .custom-menu-primary .hs-menu-wrapper > ul ul ul li a{
+    text-indent: 30px; /* Indent Child lists */
+  }
+  .custom-menu-primary .hs-menu-wrapper > ul ul ul ul li a{
+    text-indent: 50px; /* Indent Child lists */
+  }
 }
 
-@media (max-width: 568px) {
-.custom-menu-primary .hs-menu-wrapper>ul ul {
-    list-style: none;
-    margin: 0;
-    display: none;
-}
-}
+
+
+
+
+
 
 
 /* ==========================================================================
@@ -895,16 +954,18 @@ body.hs-blog-listing {}
 .blog-post-wrapper {}
 
 /* Blog Title */
+.hs-blog-header h1 {}
 .hs-blog-header h1 a{}
 
 /* Blog Post Title */
+.post-header h2 {}
 .post-header h2 a {}
 
 /* Blog Author and Avatar */
 #hubspot-author_data {}
 #hubspot-author_data a.author-link {}
-.hs-author-avatar {}
-.hs-author-avatar img {}
+#hubspot-author_data .hs-author-avatar {}
+#hubspot-author_data .hs-author-avatar img {}
 
 /* Use this to set up different styling for your blog posts */
 .blog-listing-wrapper .post-listing .post-item {}
@@ -967,10 +1028,35 @@ a.more-link {}
 
 /* Pagination */
 .blog-pagination {}
-.blog-pagination .previous-posts-link {}
-.blog-pagination .all-posts-link {}
-.blog-pagination .next-posts-link {}
+.blog-pagination a {}
+.blog-pagination a.previous-posts-link {}
+.blog-pagination a.all-posts-link {}
+.blog-pagination a.next-posts-link {}
 
+/** 
+ * Blog Author Page 
+ *
+ * ALWAYS be sure to set styles to these selectors, as the COS does not provide default styles
+ */
+
+.hs-author-profile {}
+.hs-author-profile h2.hs-author-name {}
+.hs-author-profile .hs-author-bio {}
+.hs-author-profile .hs-author-avatar {}
+.hs-author-profile .hs-author-avatar img {}
+h3.hs-author-listing-header {}
+
+/** 
+ * Blog All Posts Page
+ *
+ * ALWAYS be sure to set styles to these selectors, as the COS does not provide default styles
+ */
+
+body.hs-content-path-blog-all {}
+div.post-listing-simple {}
+div.post-listing-simple .post-item {}
+h2.post-listing-simple {}
+h2.post-listing-simple a {}
 
 
 /* Blog Sidebar
@@ -1184,8 +1270,8 @@ body .hs-common-error-message {}
 #hs_form_target_blog_subscription input[type="email"]:focus {}
 
 #hs_form_target_blog_subscription input[type="radio"], #hs_form_target_blog_subscription input[type="checkbox"] {
-width: auto;
-margin-right: 10px;
+	width: auto;
+	margin-right: 10px;
 }
 
 
@@ -1349,6 +1435,7 @@ body input[type="button"]:focus {}
 
 
    ========================================================================== */
+
 
 /* Large desktop */
 @media (min-width: 1200px) { ... }
