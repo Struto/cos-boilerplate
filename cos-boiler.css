@@ -1,7 +1,7 @@
 /* @import url('http://example.com/example_style.css'); */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
 /**
  * CSS @imports must be at the top of the file.      
  * Add them above this section.                             
@@ -10,7 +10,7 @@
 
 
 /* ==========================================================================
-   SparkReaction Boilerplate v1.5.0                                
+   Struto Boilerplate v1.0.0                                
    ========================================================================== */
 
 /* This responsive framework is required for all styles. */
